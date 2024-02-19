@@ -36,8 +36,8 @@ values
 
 --USERS INNER JOIN POSTS
 
-select * from users U inner join posts P                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-on U.id = P.creator_id;
+select P.title, P.text, U.firstName ||' '|| U.lastName AS creator, U.email from posts P
+inner join users U on P.creator_id = U.id;
 
 -- Creación de la tabla LIKES
 
@@ -59,8 +59,8 @@ values
 
 --USERS INNER JOIN LIKES INNER JOIN POSTS
 
-select * from users U inner join likes L
-on U.id = L.user_id inner join posts P
-on L.post_id = P.id;
+select P.title, P.text, U.firstName ||' '|| U.lastName AS user_like, U.email from posts P
+inner join likes L on L.post_id = P.id
+inner join users U on L.user_id = U.id;
 
 
